@@ -21,11 +21,16 @@ a {
 button {
 	cursor: pointer;
 }
+
+.container {
+	position: fixed;
+}
+
 /* Cookie */
 .fc {
 	background: transparent;
 	display: block;
-	margin: 4.5em auto 0 auto;
+	margin: 0 auto 0 auto;
 	position: relative;
 	width: 20em;
 	height: 17em;
@@ -118,26 +123,19 @@ button {
 
 /* Fortune */
 .fc-fortune {
-	background:
-		linear-gradient(#fff0 .75em,#fff 0 5.25em,#fff0 0),
-		linear-gradient(90deg,currentColor 3em,#fff 0 25.25em,currentColor 0);
-	color: #00c;
+	top: 15%;
+	background-color: #e6e6e8;
+	border-radius: 15px;
+    position: absolute;
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	padding: 0.75em 1.5em 0.75em 3.75em;
-	text-align: center;
-	width: 26em;
-	height: 6em;
-	left: 0;
+	padding: 4px;
+    padding-inline: 15px;
 	transform: scale(0,1);
 	transform-origin: 50% 32%;
 }
 .fc-fortune-text {
-	font-family: serif;
-}
-.fc-lucky-numbers {
-	font-family: sans-serif;
+	font-family: "Helvetica Neue";
+	font-size: 15px;
 }
 
 /* Animation States */
@@ -145,20 +143,20 @@ button {
 	animation: popIn 0.3s linear;
 }
 .opened {
-	width: 26em;
-	height: 6em;
+	display: flex;
+    justify-content: center;
 }
 .opened .left {
-	animation: breakLeft 0.7s ease-in forwards;
+	animation: breakLeft 0.5s ease-in forwards;
 }
 .opened .right {
-	animation: breakRight 0.7s ease-in forwards;
+	animation: breakRight 0.5s ease-in forwards;
 }
 .opened .fc-crumbs {
-	animation: fallOut 0.7s ease-in forwards;
+	animation: fallOut 0.5s ease-in forwards;
 }
 .opened .fc-fortune {
-	animation: foldOut 0.7s ease-in forwards;
+	animation: foldOut 0.5s ease-in forwards;
 }
 
 /* Animations */
@@ -176,33 +174,37 @@ button {
 @keyframes breakLeft {
 	from {
 		transform: translateX(0) rotate(25deg);
+		opacity: 1;
 	}
 	30%, 40% {
 		transform: translateX(0) rotate(55deg);
+		opacity: 0.8;
 	}
 	70%, 80% {
-		opacity: 1;
-		transform: translateX(-14em) rotate(50deg);
+		transform: translateX(-20em) rotate(50deg);
+		opacity: 0.5;
 	}
 	to {
 		opacity: 0;
-		transform: translateX(-14em) rotate(50deg);
+		transform: translateX(-20em) rotate(50deg);
 	}
 }
 @keyframes breakRight {
 	from {
 		transform: translateX(0) rotate(-25deg);
+		opacity: 1;
 	}
 	30%, 40% {
 		transform: translateX(0) rotate(-55deg);
+		opacity: 0.8;
 	}
 	70%, 80% {
-		opacity: 1;
-		transform: translateX(14em) rotate(-50deg);
+		transform: translateX(20em) rotate(-50deg);
+		opacity: 0.5;
 	}
 	to {
 		opacity: 0;
-		transform: translateX(14em) rotate(-50deg);
+		transform: translateX(20em) rotate(-50deg);
 	}
 }
 @keyframes fallOut {
@@ -224,14 +226,18 @@ button {
 @keyframes foldOut {
 	from {
 		transform: scale(0.23,0.7);
+		opacity: 0;
 	}
 	30%, 40% {
 		transform: scale(0.5,0.7);
+		opacity: 0.2;
 	}
 	69% {
 		transform: scale(1,0.7);
+		opacity: 0.5;
 	}
 	74%, to {
 		transform: scale(1,1);
+		opacity: 1;
 	}
 }

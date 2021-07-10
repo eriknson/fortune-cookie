@@ -1,17 +1,19 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import Script from 'next/script';
 import { MouseEventHandler, useState } from 'react';
+import { Client } from "@notionhq/client";
 import styles from '../styles/Home.module.css';
 
-export default function Home() {
-  const fortuneList = [
-    'Lorem ipsum 1',
-    'Lorem ipsum 2',
-    'Lorem ipsum 3',
-    'Lorem ipsum 4'
-  ];
+type NotionDatabaseStructure = {
+  fortunes: Array<{
+    id: string;
+    properties: {
+      Fortune: { title: Array<{ plain_text: string }> };
+    };
+  }>;
+};
 
+export default function Home({ fortunes }: NotionDatabaseStructure) {
+  const fortuneList = fortunes.map((fortune) => fortune.properties.Fortune.title[0].plain_text);
   const [closedCookie, openCookie] = useState(false);
 
   const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
@@ -28,11 +30,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a>High fortune with Dree Low</a>
-        </h1>
-
-        <div>
+        <div className="container">
           <button
             className={closedCookie ? 'fc spawned' : 'fc opened'}
             onClick={(e: MouseEventHandler<HTMLInputElement, MouseEvent>) =>
@@ -75,4 +73,18 @@ export default function Home() {
       </footer> */}
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const notion = new Client({ auth: process.env.NOTION_API_KEY });
+  const response = await notion.databases.query({
+    database_id: process.env.NOTION_DATABASE_ID!,
+  });
+
+  return {
+    props: {
+      fortunes: response.results,
+    },
+    revalidate: 30,
+  };
 }
