@@ -16,7 +16,7 @@ export default function Home({ fortunes }: NotionDatabaseStructure) {
   const fortuneList = fortunes.map((fortune) => fortune.properties.Fortune.title[0].plain_text);
   const [closedCookie, openCookie] = useState(false);
 
-  const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log(e);
     openCookie(!closedCookie);
   };
@@ -33,7 +33,7 @@ export default function Home({ fortunes }: NotionDatabaseStructure) {
         <div className="container">
           <button
             className={closedCookie ? 'fc spawned' : 'fc opened'}
-            onClick={(e: MouseEventHandler<HTMLInputElement, MouseEvent>) =>
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
               handleClick(e)
             }
             type="button"
