@@ -29,6 +29,11 @@ export default function Home({ fortunes }: NotionDatabaseStructure) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <h1 className={styles.title}>
+        <span>High</span> fortune
+      </h1>
+      <h2 className={styles.subtitle}>with Dree Low</h2>
+
       <main className={styles.main}>
         <div className="container">
           <button

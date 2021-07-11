@@ -125,16 +125,17 @@ button {
 .fc-fortune {
 	top: 15%;
 	background-color: #e6e6e8;
-	border-radius: 15px;
+	border-radius: 11px;
     position: absolute;
 	display: flex;
 	padding: 4px;
-    padding-inline: 15px;
+    padding-inline: 10px;
 	transform: scale(0,1);
 	transform-origin: 50% 32%;
 }
 .fc-fortune-text {
 	font-family: "Helvetica Neue";
+	text-align: left;
 	font-size: 15px;
 }
 
@@ -181,12 +182,12 @@ button {
 		opacity: 0.8;
 	}
 	70%, 80% {
-		transform: translateX(-20em) rotate(50deg);
+		transform: translateX(-13em) rotate(50deg);
 		opacity: 0.5;
 	}
 	to {
-		opacity: 0;
-		transform: translateX(-20em) rotate(50deg);
+		opacity: 1;
+		transform: translateX(-13em) rotate(50deg);
 	}
 }
 @keyframes breakRight {
@@ -199,12 +200,12 @@ button {
 		opacity: 0.8;
 	}
 	70%, 80% {
-		transform: translateX(20em) rotate(-50deg);
+		transform: translateX(13em) rotate(-50deg);
 		opacity: 0.5;
 	}
 	to {
-		opacity: 0;
-		transform: translateX(20em) rotate(-50deg);
+		opacity: 1;
+		transform: translateX(13em) rotate(-50deg);
 	}
 }
 @keyframes fallOut {
