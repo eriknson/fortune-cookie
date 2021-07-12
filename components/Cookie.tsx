@@ -36,8 +36,8 @@ const Cookie: React.FC<Props> = ({ fortunes }) => {
         </div>
         <div className="fc-fortune">
           <p className="fc-fortune-text">
-            {fortunes[~~(Math.random() * fortunes.length)]} //
-            eslint-disable-line no-bitwise
+            {fortunes[~~(Math.random() * fortunes.length)]}{' '}
+            {/*eslint-disable-line no-bitwise */}
           </p>
         </div>
       </button>
