@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React from 'react';
 
 const HeaderContainer = styled.div`
   position: absolute;
@@ -14,13 +15,11 @@ const Subtitle = styled.h2`
   font-size: 24px;
 `;
 
-const Header = () => {
-  return (
-    <HeaderContainer>
-      <Title>High fortune</Title>
-      <Subtitle>with Dree Low</Subtitle>
-    </HeaderContainer>
-  );
-};
+const Header = () => (
+  <HeaderContainer>
+    <Title>High fortune</Title>
+    <Subtitle>with Dree Low</Subtitle>
+  </HeaderContainer>
+);
 
 export default Header;

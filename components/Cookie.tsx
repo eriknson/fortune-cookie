@@ -12,7 +12,6 @@ const Cookie: React.FC<Props> = ({ fortunes }) => {
   const [closedCookie, openCookie] = useState(false);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log(e);
     openCookie(!closedCookie);
   };
 
@@ -23,21 +22,22 @@ const Cookie: React.FC<Props> = ({ fortunes }) => {
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleClick(e)}
         type="button"
       >
-        <div className="fc-part left"></div>
-        <div className="fc-part right"></div>
+        <div className="fc-part left" />
+        <div className="fc-part right" />
         <div className="fc-crumbs">
-          <div className="fc-crumb"></div>
-          <div className="fc-crumb"></div>
-          <div className="fc-crumb"></div>
-          <div className="fc-crumb"></div>
-          <div className="fc-crumb"></div>
-          <div className="fc-crumb"></div>
-          <div className="fc-crumb"></div>
-          <div className="fc-crumb"></div>
+          <div className="fc-crumb" />
+          <div className="fc-crumb" />
+          <div className="fc-crumb" />
+          <div className="fc-crumb" />
+          <div className="fc-crumb" />
+          <div className="fc-crumb" />
+          <div className="fc-crumb" />
+          <div className="fc-crumb" />
         </div>
         <div className="fc-fortune">
           <p className="fc-fortune-text">
-            {fortunes[~~(Math.random() * fortunes.length)]}
+            {fortunes[~~(Math.random() * fortunes.length)]} //
+            eslint-disable-line no-bitwise
           </p>
         </div>
       </button>
