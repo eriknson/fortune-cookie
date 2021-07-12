@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 
@@ -6,7 +6,7 @@ const CookieContainer = styled.div`
   position: fixed;
 `;
 
-type Props = { fortunes: Array<String> };
+type Props = { fortunes: Array<string> };
 
 const Cookie: React.FC<Props> = ({ fortunes }) => {
   const [closedCookie, openCookie] = useState(false);

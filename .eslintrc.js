@@ -24,6 +24,8 @@ module.exports = {
     'prettier'
   ],
   rules: {
+    '@typescript-eslint/no-var-requires': 0,
+    camelcase: ['error', { properties: 'never' }],
     'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx'] }],
     'import/extensions': 'off',
     'react/prop-types': 'off',
