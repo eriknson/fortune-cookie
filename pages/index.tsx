@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
 import Head from 'next/head';
 import React, { useState } from 'react';
 import { Client } from '@notionhq/client';
