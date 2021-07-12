@@ -1,7 +1,9 @@
 import Head from 'next/head';
-import { MouseEventHandler, useState } from 'react';
-import { Client } from "@notionhq/client";
+import { useState } from 'react';
+import { Client } from '@notionhq/client';
 import styles from '../styles/Home.module.css';
+import Header from '../components/Header';
+import Cookie from '../components/Cookie';
 
 type NotionDatabaseStructure = {
   fortunes: Array<{
@@ -13,7 +15,9 @@ type NotionDatabaseStructure = {
 };
 
 export default function Home({ fortunes }: NotionDatabaseStructure) {
-  const fortuneList = fortunes.map((fortune) => fortune.properties.Fortune.title[0].plain_text);
+  const fortunesFromNotion = fortunes.map(
+    (fortune) => fortune.properties.Fortune.title[0].plain_text
+  );
   const [closedCookie, openCookie] = useState(false);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -29,39 +33,9 @@ export default function Home({ fortunes }: NotionDatabaseStructure) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className={styles.title}>
-        <span>High</span> fortune
-      </h1>
-      <h2 className={styles.subtitle}>with Dree Low</h2>
-
       <main className={styles.main}>
-        <div className="container">
-          <button
-            className={closedCookie ? 'fc spawned' : 'fc opened'}
-            onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-              handleClick(e)
-            }
-            type="button"
-          >
-            <div className="fc-part left"></div>
-            <div className="fc-part right"></div>
-            <div className="fc-crumbs">
-              <div className="fc-crumb"></div>
-              <div className="fc-crumb"></div>
-              <div className="fc-crumb"></div>
-              <div className="fc-crumb"></div>
-              <div className="fc-crumb"></div>
-              <div className="fc-crumb"></div>
-              <div className="fc-crumb"></div>
-              <div className="fc-crumb"></div>
-            </div>
-            <div className="fc-fortune">
-              <p className="fc-fortune-text">
-                {fortuneList[~~(Math.random() * fortuneList.length)]}
-              </p>
-            </div>
-          </button>
-        </div>
+        <Header />
+        <Cookie fortunes={fortunesFromNotion} />
       </main>
 
       {/* <footer className={styles.footer}>
@@ -83,13 +57,13 @@ export default function Home({ fortunes }: NotionDatabaseStructure) {
 export async function getStaticProps() {
   const notion = new Client({ auth: process.env.NOTION_API_KEY });
   const response = await notion.databases.query({
-    database_id: process.env.NOTION_DATABASE_ID!,
+    database_id: process.env.NOTION_DATABASE_ID!
   });
 
   return {
     props: {
-      fortunes: response.results,
+      fortunes: response.results
     },
-    revalidate: 30,
+    revalidate: 30
   };
 }
