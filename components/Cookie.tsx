@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const CookieContainer = styled.div`
-  position: fixed;
-`;
+const CookieContainer = styled.div``;
 
 type Props = { fortunes: Array<string> };
 

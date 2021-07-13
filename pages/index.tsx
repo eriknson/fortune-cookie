@@ -24,18 +24,16 @@ export default function Home({ fortunes }: NotionDatabase): JSX.Element {
   );
 
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>High fortune 🥠</title>
         <meta name="description" content="Badabim badaboom" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <Header />
-        <Cookie fortunes={fortunesFromNotion} />
-      </main>
-    </div>
+      <Header />
+      <Cookie fortunes={fortunesFromNotion} />
+    </>
   );
 }
 
