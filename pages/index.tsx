@@ -2,7 +2,6 @@ import Head from 'next/head';
 import React from 'react';
 import { Client } from '@notionhq/client';
 import { Page } from '@notionhq/client/build/src/api-types';
-import styles from '../styles/Home.module.css';
 import Header from '../components/Header';
 import Cookie from '../components/Cookie';
 
