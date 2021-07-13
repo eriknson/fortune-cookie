@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React from 'react';
 
-const HeaderContainer = styled.div`
+const Wrapper = styled.div`
   position: absolute;
   top: 5%;
   text-align: center;
@@ -15,11 +15,11 @@ const Subtitle = styled.h2`
   font-size: 24px;
 `;
 
-const Header = (): JSX.Element => (
-  <HeaderContainer>
+const TitleComponent = (): JSX.Element => (
+  <Wrapper>
     <Title>High fortune</Title>
     <Subtitle>with Dree Low</Subtitle>
-  </HeaderContainer>
+  </Wrapper>
 );
 
-export default Header;
+export default TitleComponent;

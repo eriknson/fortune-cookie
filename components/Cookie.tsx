@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const CookieContainer = styled.div``;
+const CookieWrapper = styled.div``;
 
 type Props = { fortunes: Array<string> };
 
@@ -15,7 +15,7 @@ const Cookie: React.FC<Props> = ({ fortunes }) => {
   };
 
   return (
-    <CookieContainer>
+    <CookieWrapper>
       <button
         className={closedCookie ? 'fc spawned' : 'fc opened'}
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleClick(e)}
@@ -40,7 +40,7 @@ const Cookie: React.FC<Props> = ({ fortunes }) => {
           </p>
         </div>
       </button>
-    </CookieContainer>
+    </CookieWrapper>
   );
 };
 

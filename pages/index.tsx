@@ -2,7 +2,7 @@ import Head from 'next/head';
 import React from 'react';
 import { Client } from '@notionhq/client';
 import { Page } from '@notionhq/client/build/src/api-types';
-import Header from '../components/Header';
+import TitleComponent from '../components/TitleComponent';
 import Cookie from '../components/Cookie';
 
 type NotionFortune = {
@@ -15,6 +15,13 @@ type NotionFortune = {
 
 type NotionDatabase = {
   fortunes: Array<NotionFortune>;
+};
+
+type Response = {
+  props: {
+    fortunes: Page[];
+  };
+  revalidate: number;
 };
 
 export default function Home({ fortunes }: NotionDatabase): JSX.Element {
@@ -30,18 +37,13 @@ export default function Home({ fortunes }: NotionDatabase): JSX.Element {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
+      <TitleComponent />
       <Cookie fortunes={fortunesFromNotion} />
     </>
   );
 }
 
-export async function getStaticProps(): Promise<{
-  props: {
-    fortunes: Page[];
-  };
-  revalidate: number;
-}> {
+export async function getStaticProps(): Promise<Response> {
   const notion = new Client({ auth: process.env.NOTION_API_KEY });
   const response = await notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID
