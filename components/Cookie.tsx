@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const CookieContainer = styled.div`
@@ -12,6 +11,8 @@ const Cookie: React.FC<Props> = ({ fortunes }) => {
   const [closedCookie, openCookie] = useState(false);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // eslint-disable-next-line no-console
+    console.log(e);
     openCookie(!closedCookie);
   };
 

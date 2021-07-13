@@ -15,7 +15,7 @@ const Subtitle = styled.h2`
   font-size: 24px;
 `;
 
-const Header = () => (
+const Header = (): JSX.Element => (
   <HeaderContainer>
     <Title>High fortune</Title>
     <Subtitle>with Dree Low</Subtitle>

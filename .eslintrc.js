@@ -25,6 +25,7 @@ module.exports = {
   ],
   rules: {
     '@typescript-eslint/no-var-requires': 0,
+    '@typescript-eslint/camelcase': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx'] }],
     'import/extensions': 'off',
     'react/prop-types': 'off',
