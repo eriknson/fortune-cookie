@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import Head from 'next/head';
 import React from 'react';
 import { Client } from '@notionhq/client';
@@ -5,16 +6,17 @@ import { Page } from '@notionhq/client/build/src/api-types';
 import TitleComponent from '../components/TitleComponent';
 import Cookie from '../components/Cookie';
 
-type NotionFortune = {
+type NotionRow = {
   id: string;
   properties: {
-    // eslint-disable-next-line camelcase
     Fortune: { title: Array<{ plain_text: string }> };
+    Artist: { rich_text: Array<{ plain_text: string }> };
+    Song: { rich_text: Array<{ plain_text: string }> };
   };
 };
 
-type NotionDatabase = {
-  fortunes: Array<NotionFortune>;
+type NotionArray = {
+  fortunes: Array<NotionRow>;
 };
 
 type Response = {
@@ -24,10 +26,13 @@ type Response = {
   revalidate: number;
 };
 
-export default function Home({ fortunes }: NotionDatabase): JSX.Element {
-  const fortunesFromNotion = fortunes.map(
-    (fortune) => fortune.properties.Fortune.title[0].plain_text
-  );
+export default function Home({ fortunes }: NotionArray): JSX.Element {
+  const fortunesFromNotion = fortunes.map((fortune) => ({
+    id: fortune.id,
+    lyric: fortune.properties.Fortune.title[0].plain_text,
+    artist: fortune.properties.Artist.rich_text[0].plain_text,
+    song: fortune.properties.Song.rich_text[0].plain_text
+  }));
 
   return (
     <>
@@ -38,7 +43,10 @@ export default function Home({ fortunes }: NotionDatabase): JSX.Element {
       </Head>
 
       <TitleComponent />
-      <Cookie fortunes={fortunesFromNotion} />
+      <Cookie
+        // eslint-disable-next-line no-bitwise
+        fortunes={fortunesFromNotion}
+      />
     </>
   );
 }
