@@ -6,6 +6,14 @@ const CookieWrapper = styled.div`
   height: 12em;
 `;
 
+const CookiePartLeft = styled.div``;
+
+const CookiePartRight = styled.div``;
+
+const CookieCrumbContainer = styled.div``;
+
+const CookieCrumb = styled.div``;
+
 type Fortune = {
   id: string;
   lyric: string;
