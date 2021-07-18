@@ -4,6 +4,7 @@ import Fortune from './Fortune';
 
 const CookieWrapper = styled.div`
   height: 12em;
+  padding-inline: 5%;
 `;
 
 const CookiePartLeft = styled.div``;

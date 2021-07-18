@@ -8,11 +8,11 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 48px;
+  font-size: 55px;
 `;
 
 const Subtitle = styled.h2`
-  font-size: 24px;
+  font-size: 25px;
 `;
 
 const TitleComponent = (): JSX.Element => (

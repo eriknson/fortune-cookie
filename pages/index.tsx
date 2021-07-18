@@ -9,6 +9,7 @@ import Cookie from '../components/Cookie';
 type NotionRow = {
   id: string;
   properties: {
+    Approved: { checkbox: boolean };
     Fortune: { title: Array<{ plain_text: string }> };
     Artist: { rich_text: Array<{ plain_text: string }> };
     Song: { rich_text: Array<{ plain_text: string }> };
@@ -27,12 +28,17 @@ type Response = {
 };
 
 export default function Home({ fortunes }: NotionArray): JSX.Element {
-  const fortunesFromNotion = fortunes.map((fortune) => ({
-    id: fortune.id,
-    lyric: fortune.properties.Fortune.title[0].plain_text,
-    artist: fortune.properties.Artist.rich_text[0].plain_text,
-    song: fortune.properties.Song.rich_text[0].plain_text
-  }));
+  const fortunesFromNotion = fortunes.reduce((approvedFortunes, fortune) => {
+    if (fortune.properties.Approved.checkbox) {
+      approvedFortunes.push({
+        id: fortune.id,
+        lyric: fortune.properties.Fortune.title[0].plain_text,
+        artist: fortune.properties.Artist.rich_text[0].plain_text,
+        song: fortune.properties.Song.rich_text[0].plain_text
+      });
+    }
+    return approvedFortunes;
+  }, []);
 
   return (
     <>
@@ -61,6 +67,6 @@ export async function getStaticProps(): Promise<Response> {
     props: {
       fortunes: response.results
     },
-    revalidate: 30
+    revalidate: 300
   };
 }
