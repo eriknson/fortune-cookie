@@ -6,6 +6,7 @@ const FortuneWrapper = styled.div`
   display: flex;
   flex-direction: column;
   font-family: 'Helvetica Neue';
+  line-height: 1.5;
   animation: foldOut 0.5s ease-in forwards;
 `;
 
@@ -21,6 +22,7 @@ const FortuneAuthor = styled.div`
   text-align: left;
   padding-inline: 10px;
   font-size: 10px;
+  background: transparent;
   font-weight: 500;
   color: #b1b1b1;
 `;
