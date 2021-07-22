@@ -17,7 +17,7 @@ export async function getFortunes(): Promise<Fortune[]> {
     database_id: databaseId
   });
 
-  const formattedFortunes = response.results.reduce(
+  const formattedFortunes: Fortune[] = response.results.reduce(
     (approvedFortunes, fortune) => {
       if (fortune.properties.Approved.checkbox) {
         approvedFortunes.push({
@@ -40,6 +40,6 @@ export default async function getFortunesApi(
   _req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const fortunes = await getFortunes();
+  const fortunes: Fortune[] = await getFortunes();
   res.status(200).json(fortunes);
 }
