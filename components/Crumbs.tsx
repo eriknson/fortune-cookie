@@ -21,9 +21,10 @@ const Crumb = styled.div`
 
 const Crumbs: React.FC = () => {
   const randomCrumbs = [];
-  for (let i = 0; i < Math.random() * (50 - 15) + 15; i += 1) {
+  for (let i = 0; i < Math.random() * (30 - 5) + 5; i += 1) {
     randomCrumbs.push(
       <Crumb
+        key={i}
         style={{
           left: `${Math.random() * 100}%`,
           top: `${Math.random() * (75 - 5) + 5}%`
