@@ -5,30 +5,29 @@ import { Client } from '@notionhq/client';
 import { Page } from '@notionhq/client/build/src/api-types';
 import TitleComponent from '../components/TitleComponent';
 import Cookie from '../components/Cookie';
+import SubmitFortune from '../components/SubmitFortune';
+import { getFortunes } from './api/fortunes';
 
-type NotionRow = {
+type Fortune = {
   id: string;
-  properties: {
-    Approved: { checkbox: boolean };
-    Fortune: { title: Array<{ plain_text: string }> };
-    Artist: { rich_text: Array<{ plain_text: string }> };
-    Song: { rich_text: Array<{ plain_text: string }> };
-  };
+  lyric: string;
+  artist: string;
+  song: string;
 };
 
-type NotionArray = {
-  fortunes: Array<NotionRow>;
+type Fortunes = {
+  fortunes: Array<Fortune>;
 };
 
 type Response = {
   props: {
-    fortunes: Page[];
+    fortunes: Fortune[];
   };
   revalidate: number;
 };
 
-export default function Home({ fortunes }: NotionArray): JSX.Element {
-  const fortunesFromNotion = fortunes.reduce((approvedFortunes, fortune) => {
+export default function Home({ fortunes }: Fortunes): JSX.Element {
+  /*   const fortunesFromNotion = fortunes.reduce((approvedFortunes, fortune) => {
     if (fortune.properties.Approved.checkbox) {
       approvedFortunes.push({
         id: fortune.id,
@@ -38,7 +37,7 @@ export default function Home({ fortunes }: NotionArray): JSX.Element {
       });
     }
     return approvedFortunes;
-  }, []);
+  }, []); */
 
   return (
     <>
@@ -51,21 +50,19 @@ export default function Home({ fortunes }: NotionArray): JSX.Element {
       <TitleComponent />
       <Cookie
         // eslint-disable-next-line no-bitwise
-        fortunes={fortunesFromNotion}
+        fortunes={fortunes}
       />
+      <SubmitFortune />
     </>
   );
 }
 
 export async function getStaticProps(): Promise<Response> {
-  const notion = new Client({ auth: process.env.NOTION_API_KEY });
-  const response = await notion.databases.query({
-    database_id: process.env.NOTION_DATABASE_ID
-  });
+  const fortunes = await getFortunes();
 
   return {
     props: {
-      fortunes: response.results
+      fortunes
     },
     revalidate: 300
   };
