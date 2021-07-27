@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import React from 'react';
 
 const Wrapper = styled.div`
-  position: absolute;
-  top: 5%;
+  height: 33%;
+  padding-top: 2em;
+  width: 100%;
   text-align: center;
 `;
 
 const Title = styled.h1`
-  font-size: 55px;
+  font-size: 48px;
 `;
 
 const Subtitle = styled.h2`

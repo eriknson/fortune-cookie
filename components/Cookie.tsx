@@ -4,12 +4,13 @@ import Fortune from './Fortune';
 import Crumbs from './Crumbs';
 
 const CookieWrapper = styled.div`
-  height: 14em;
+  width: 100%;
+  max-width: 325px;
+  height: 33%;
+  padding-top: 2em;
   cursor: pointer;
   display: block;
   position: relative;
-  margin-inline: 2em;
-  margin-block: 6em;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 `;
 

@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FortuneWrapper = styled.div`
-  top: 15%;
+  margin: auto;
+  max-width: 90%;
+  width: fit-content;
   display: flex;
   flex-direction: column;
   font-family: 'Helvetica Neue';

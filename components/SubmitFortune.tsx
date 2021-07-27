@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 import styled from 'styled-components';
 import React from 'react';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 const { Client } = require('@notionhq/client');
 
@@ -14,12 +16,24 @@ type FortuneSubmission = {
   author: string;
 };
 
-const Wrapper = styled.div``;
-const Title = styled.h2``;
+const Wrapper = styled.div`
+  height: 33%;
+  width: 100%;
+  text-align: center;
+  padding-block: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+const InputForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const SubmitFortune: React.FC = () => {
-  const title = 'Submit a fortune';
-
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     submitFortuneToNotion({
       lyric: 'Du blir inte smart av den skiten som du läser',
@@ -31,11 +45,18 @@ const SubmitFortune: React.FC = () => {
 
   return (
     <Wrapper>
-      <Title
+      <Button
+        color="primary"
+        variant="outlined"
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleClick(e)}
       >
-        {title}
-      </Title>
+        Submit fortune
+      </Button>
+      {/* <InputForm noValidate autoComplete="off">
+        <TextField label="Lyric / fortune" fullWidth multiline rows={4} />
+        <TextField label="Artist" fullWidth />
+        <TextField label="Song" fullWidth />
+      </InputForm> */}
     </Wrapper>
   );
 };
