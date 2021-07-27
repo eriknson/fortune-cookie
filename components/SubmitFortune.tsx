@@ -1,9 +1,18 @@
+/* eslint-disable no-console */
 import styled from 'styled-components';
 import React from 'react';
-import { Client } from '@notionhq/client';
 
-const notion = new Client({ auth: process.env.NOTION_KEY });
-const databaseId = process.env.NOTION_DATABASE_ID;
+const { Client } = require('@notionhq/client');
+
+const notion = new Client({ auth: process.env.NOTION_API_KEY });
+const databaseId: string = process.env.NOTION_DATABASE_ID;
+
+type FortuneSubmission = {
+  lyric: string;
+  artist: string;
+  song: string;
+  author: string;
+};
 
 const Wrapper = styled.div``;
 const Title = styled.h2``;
@@ -12,7 +21,12 @@ const SubmitFortune: React.FC = () => {
   const title = 'Submit a fortune';
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // addItem('Hello world');
+    submitFortuneToNotion({
+      lyric: 'Du blir inte smart av den skiten som du läser',
+      artist: 'Badabim',
+      song: 'Killarna i Båstad',
+      author: 'null'
+    });
   };
 
   return (
@@ -28,7 +42,7 @@ const SubmitFortune: React.FC = () => {
 
 export default SubmitFortune;
 
-/* async function addItem(text) {
+async function submitFortuneToNotion(fortune: FortuneSubmission) {
   try {
     await notion.request({
       mode: 'no-cors',
@@ -41,10 +55,18 @@ export default SubmitFortune;
             title: [
               {
                 text: {
-                  content: text
+                  content: fortune.lyric
                 }
               }
             ]
+          },
+          Artist: {
+            rich_text: [
+              { type: fortune.artist, text: { content: fortune.artist } }
+            ]
+          },
+          Song: {
+            rich_text: [{ type: fortune.song, text: { content: fortune.song } }]
           }
         }
       }
@@ -53,4 +75,4 @@ export default SubmitFortune;
   } catch (error) {
     console.error(error.body);
   }
-} */
+}

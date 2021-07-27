@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 const { Client } = require('@notionhq/client');
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
+const databaseId: string = process.env.NOTION_DATABASE_ID;
 
 type Fortune = {
   id: string;
@@ -12,7 +13,6 @@ type Fortune = {
 };
 
 export async function getFortunes(): Promise<Fortune[]> {
-  const databaseId: string = process.env.NOTION_DATABASE_ID;
   const response = await notion.databases.query({
     database_id: databaseId
   });
