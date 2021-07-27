@@ -8,8 +8,8 @@ const CookieWrapper = styled.div`
   cursor: pointer;
   display: block;
   position: relative;
-  margin-inline: 5%;
-  margin: 4em;
+  margin-inline: 2em;
+  margin-block: 6em;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 `;
 

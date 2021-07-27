@@ -11,8 +11,6 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 #__next {
@@ -84,12 +82,12 @@ button {
   }
   70%,
   80% {
-    transform: translateX(-13em) rotate(50deg);
+    transform: translateX(-16em) rotate(50deg);
     opacity: 0.5;
   }
   to {
     opacity: 1;
-    transform: translateX(-13em) rotate(50deg);
+    transform: translateX(-16em) rotate(50deg);
   }
 }
 @keyframes breakRight {
@@ -104,12 +102,12 @@ button {
   }
   70%,
   80% {
-    transform: translateX(13em) rotate(-50deg);
+    transform: translateX(16em) rotate(-50deg);
     opacity: 0.5;
   }
   to {
     opacity: 1;
-    transform: translateX(13em) rotate(-50deg);
+    transform: translateX(16em) rotate(-50deg);
   }
 }
 @keyframes fallOut {
