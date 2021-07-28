@@ -36,11 +36,22 @@ export default function Home({ fortunes }: Fortunes): JSX.Element {
       <TitleComponent />
       <Cookie
         // eslint-disable-next-line no-bitwise
-        fortunes={fortunes}
+        fortunes={shuffleArray(fortunes)}
       />
       <SubmitFortune />
     </>
   );
+}
+
+function shuffleArray(array: Array<Fortune>) {
+  let returnedArray = array;
+  for (let i: number = array.length - 1; i > 0; i -= 1) {
+    let j = Math.floor(Math.random() * (i + 1));
+    let temp = array[i];
+    returnedArray[i] = array[j];
+    returnedArray[j] = temp;
+  }
+  return returnedArray;
 }
 
 export async function getStaticProps(): Promise<Response> {

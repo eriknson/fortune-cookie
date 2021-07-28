@@ -60,12 +60,14 @@ type Props = { fortunes: Array<Fortune> };
 const Cookie: React.FC<Props> = ({ fortunes }) => {
   const [closedCookie, openCookie] = useState(false);
   const [fortuneInsideCookie, setFortune] = useState<Fortune>(fortunes[0]);
+  const [count, setCount] = useState(0);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!closedCookie) {
-      setFortune(fortunes[Math.floor(Math.random() * fortunes.length)]);
+      setFortune(fortunes[count]);
     }
     openCookie(!closedCookie);
+    setCount(fortunes[count + 1] ? count + 1 : 0);
   };
 
   return (
