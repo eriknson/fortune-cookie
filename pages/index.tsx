@@ -1,8 +1,6 @@
 /* eslint-disable camelcase */
 import Head from 'next/head';
 import React from 'react';
-import { Client } from '@notionhq/client';
-import { Page } from '@notionhq/client/build/src/api-types';
 import TitleComponent from '../components/TitleComponent';
 import Cookie from '../components/Cookie';
 import SubmitFortune from '../components/SubmitFortune';
@@ -27,18 +25,6 @@ type Response = {
 };
 
 export default function Home({ fortunes }: Fortunes): JSX.Element {
-  /*   const fortunesFromNotion = fortunes.reduce((approvedFortunes, fortune) => {
-    if (fortune.properties.Approved.checkbox) {
-      approvedFortunes.push({
-        id: fortune.id,
-        lyric: fortune.properties.Fortune.title[0].plain_text,
-        artist: fortune.properties.Artist.rich_text[0].plain_text,
-        song: fortune.properties.Song.rich_text[0].plain_text
-      });
-    }
-    return approvedFortunes;
-  }, []); */
-
   return (
     <>
       <Head>
