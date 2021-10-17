@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
+
 import { Fortune } from '../ts/types';
 
-const FortuneWrapper = styled.div`
+const FortuneWrapper = styled(motion.div)`
   position: absolute;
   width: fit-content;
-  margin-top: -15%;
-  animation: foldOut 0.5s ease-in forwards;
+  margin-top: -10%;
+  opacity: 0;
 `;
 
 const FortuneBubble = styled.div`
@@ -29,7 +31,13 @@ const FortuneAuthor = styled.div`
 type Props = { fortune: Fortune };
 
 const FortuneMessage: React.FC<Props> = ({ fortune }) => (
-  <FortuneWrapper>
+  <FortuneWrapper
+    animate={{
+      opacity: 1,
+      y: -20,
+      transition: { duration: 0.5 }
+    }}
+  >
     <FortuneAuthor>
       {fortune.artist} — {fortune.song}
     </FortuneAuthor>
