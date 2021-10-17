@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, { FC } from 'react';
 
 const Wrapper = styled.div`
   height: 33%;
@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   text-align: center;
 `;
 
-const Title = styled.h1`
+const Headline = styled.h1`
   font-size: 48px;
 `;
 
@@ -16,11 +16,11 @@ const Subtitle = styled.h2`
   font-size: 25px;
 `;
 
-const TitleComponent = (): JSX.Element => (
+const Title: FC = (): JSX.Element => (
   <Wrapper>
-    <Title>High fortune</Title>
+    <Headline>High fortune</Headline>
     <Subtitle>with Dree Low</Subtitle>
   </Wrapper>
 );
 
-export default TitleComponent;
+export default Title;

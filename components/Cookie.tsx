@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Fortune from './Fortune';
+import { motion } from 'framer-motion';
+
+import FortuneMessage from './FortuneMessage';
 import Crumbs from './Crumbs';
+import { Fortunes, Fortune } from '../ts/types';
 
 const CookieWrapper = styled.div`
   width: 100%;
-  max-width: 325px;
-  height: 33%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
   padding-top: 2em;
   cursor: pointer;
-  display: block;
   position: relative;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  touch-action: manipulation;
 `;
 
 const CookiePartLeft = styled.div`
@@ -48,42 +56,29 @@ const CookiePartRight = styled.div`
   transform-origin: 32% 0;
 `;
 
-type Fortune = {
-  id: string;
-  lyric: string;
-  artist: string;
-  song: string;
-};
-
-type Props = { fortunes: Array<Fortune> };
-
-const Cookie: React.FC<Props> = ({ fortunes }) => {
-  const [closedCookie, openCookie] = useState(false);
-  const [fortuneInsideCookie, setFortune] = useState<Fortune>(fortunes[0]);
+const Cookie: FC<Fortunes> = ({ fortunes }): JSX.Element => {
+  const [visibleFortune, setVisibleFortune] = useState<Fortune>(fortunes[0]);
+  const [isCookieClosed, setIsCookieClosed] = useState(true);
   const [count, setCount] = useState(0);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!closedCookie) {
-      setFortune(fortunes[count]);
+    if (!isCookieClosed) {
+      setVisibleFortune(fortunes[count]);
     }
-    openCookie(!closedCookie);
+    setIsCookieClosed(!isCookieClosed);
     setCount(fortunes[count + 1] ? count + 1 : 0);
   };
 
   return (
     <CookieWrapper
-      className={closedCookie ? 'fc spawned' : 'fc opened'}
+      className={isCookieClosed ? 'fc spawned' : 'fc opened'}
       onClick={(e: React.MouseEvent<HTMLButtonElement>) => handleClick(e)}
     >
       <CookiePartLeft className="left" />
       <CookiePartRight className="right" />
-      <Crumbs />
-      {!closedCookie ? (
-        <Fortune
-          lyric={fortuneInsideCookie.lyric}
-          artist={fortuneInsideCookie.artist}
-          song={fortuneInsideCookie.song}
-        />
+      <Crumbs show={!isCookieClosed} />
+      {!isCookieClosed && visibleFortune ? (
+        <FortuneMessage key={visibleFortune.id} fortune={visibleFortune} />
       ) : null}
     </CookieWrapper>
   );

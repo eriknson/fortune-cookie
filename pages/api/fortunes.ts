@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import dummyApiResponse from '../../src/apiResponse';
 
 const { Client } = require('@notionhq/client');
 
@@ -31,6 +32,8 @@ export async function getFortunes(): Promise<Fortune[]> {
     },
     []
   );
+
+  return dummyApiResponse;
 
   return formattedFortunes;
 }

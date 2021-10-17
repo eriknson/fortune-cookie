@@ -1,21 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Fortune } from '../ts/types';
 
 const FortuneWrapper = styled.div`
-  margin: auto;
-  max-width: 90%;
+  position: absolute;
   width: fit-content;
-  display: flex;
-  flex-direction: column;
-  font-family: 'Helvetica Neue';
-  line-height: 1.5;
+  margin-top: -15%;
   animation: foldOut 0.5s ease-in forwards;
 `;
 
 const FortuneBubble = styled.div`
   background-color: #e6e6e8;
-  border-radius: 11px;
-  padding: 4px;
+  border-radius: 15px;
+  padding: 6px;
   padding-inline: 10px;
   text-align: left;
 `;
@@ -23,21 +20,21 @@ const FortuneBubble = styled.div`
 const FortuneAuthor = styled.div`
   text-align: left;
   padding-inline: 10px;
-  font-size: 10px;
+  font-size: 11px;
   background: transparent;
   font-weight: 500;
   color: #b1b1b1;
 `;
 
-type Props = { lyric: string; artist: string; song: string };
+type Props = { fortune: Fortune };
 
-const Fortune: React.FC<Props> = ({ lyric, artist, song }) => (
+const FortuneMessage: React.FC<Props> = ({ fortune }) => (
   <FortuneWrapper>
     <FortuneAuthor>
-      {artist} — {song}
+      {fortune.artist} — {fortune.song}
     </FortuneAuthor>
-    <FortuneBubble>{lyric}</FortuneBubble>
+    <FortuneBubble>{fortune.lyric}</FortuneBubble>
   </FortuneWrapper>
 );
 
-export default Fortune;
+export default FortuneMessage;

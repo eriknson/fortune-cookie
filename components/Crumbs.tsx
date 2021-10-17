@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, { FC } from 'react';
+import { motion } from 'framer-motion';
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   position: absolute;
-  margin-top: 10px;
-  left: calc(50% - 0.4em);
   width: 0.8em;
   height: 6em;
   z-index: 1;
@@ -19,7 +18,11 @@ const Crumb = styled.div`
   height: 0.5em;
 `;
 
-const Crumbs: React.FC = () => {
+type Props = {
+  show: boolean;
+};
+
+const Crumbs: FC<Props> = ({ show }) => {
   const randomCrumbs = [];
   for (let i = 0; i < Math.random() * (30 - 5) + 5; i += 1) {
     randomCrumbs.push(
@@ -32,7 +35,16 @@ const Crumbs: React.FC = () => {
       />
     );
   }
-  return <Wrapper className="fc-crumbs">{randomCrumbs}</Wrapper>;
+  return (
+    <Wrapper
+      animate={
+        show ? { opacity: 1 } : { opacity: 0, transition: { duration: 0 } }
+      }
+      className="fc-crumbs"
+    >
+      {randomCrumbs}
+    </Wrapper>
+  );
 };
 
 export default Crumbs;
