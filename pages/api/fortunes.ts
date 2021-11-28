@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import dummyApiResponse from '../../src/apiResponse';
+// import dummyApiResponse from '../../src/apiResponse';
 
 const { Client } = require('@notionhq/client');
 

@@ -17,7 +17,7 @@ const SubmitFortuneButton: React.FC = () => {
     };
 
     e.preventDefault();
-    const res = await fetch('http://localhost:3000/api/submit-fortune', {
+    const res = await fetch('/api/submit-fortune', {
       method: 'POST',
       body: JSON.stringify(fortune)
     });
