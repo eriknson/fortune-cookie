@@ -6,6 +6,7 @@ import { Fortune } from '../ts/types';
 
 const FortuneWrapper = styled(motion.div)`
   position: absolute;
+  max-width: 80%;
   width: fit-content;
   margin-top: -10%;
   opacity: 0;

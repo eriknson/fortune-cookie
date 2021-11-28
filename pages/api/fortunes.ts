@@ -33,8 +33,6 @@ export async function getFortunes(): Promise<Fortune[]> {
     []
   );
 
-  return dummyApiResponse;
-
   return formattedFortunes;
 }
 

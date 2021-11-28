@@ -1,6 +1,5 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 
 import FortuneMessage from './FortuneMessage';
 import Crumbs from './Crumbs';
@@ -8,14 +7,13 @@ import { Fortunes, Fortune } from '../ts/types';
 
 const CookieWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 400px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   align-content: center;
-  padding-top: 2em;
   cursor: pointer;
   position: relative;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

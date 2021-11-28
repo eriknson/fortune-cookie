@@ -1,0 +1,18 @@
+[
+    {
+        "type": "Group",
+        "name": "Fortunes",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "in4daTelX5fbGuQW"
+    },
+    {
+        "type": "File",
+        "name": "/Users/x/P/2021/fortune-cookie/pages/api/fortunes.ts",
+        "parent_id": "in4daTelX5fbGuQW",
+        "workspaceRoot": "/Users/x/P/2021/fortune-cookie",
+        "workspacePath": "pages/api/fortunes.ts",
+        "id": "IRNm3UbJj06qGecP"
+    }
+]
